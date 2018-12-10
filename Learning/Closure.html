@@ -1,0 +1,99 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+
+            document.write("<h2>First Example</h2>");
+
+            function foo(outer_arg){
+                function inner(inner_arg){
+                    return outer_arg + inner_arg;
+                }
+                return inner;
+            }
+
+            var get_func_inner = foo(5);
+
+            document.write(get_func_inner(4) + "<br/>");
+            document.write(get_func_inner(3) + "<br/>");
+
+            document.write("<h2>Second Example</h2>");
+
+            function outer(){
+                var arr = [];
+                var i;
+                for(i = 0; i < 4; i++){
+                    //storing anonymus function
+                    arr[i] = function () { return i; }
+                }
+                //Returning the array
+                return arr;
+            }
+
+            var get_arr = outer();
+
+            document.write("<p>We get the same value because it points to the reference of the value</p>")
+
+            document.write(get_arr[0]() + "</br>");
+            document.write(get_arr[1]() + "</br>");
+            document.write(get_arr[2]() + "</br>");
+            document.write(get_arr[3]() + "</br>");
+
+
+            document.write("<h3>Correction of the second example</h3>")
+
+            function outer2(){
+                function create_Closure(val){
+                    return function(){
+                        return val;
+                    }
+                }
+
+                var arr = [];
+                for(var i = 0; i < 4; i++){
+                    arr[i] = create_Closure(i);
+                }
+                return arr;
+            }
+
+            get_arr = outer2();       
+            document.write(get_arr[0]() + "</br>");
+            document.write(get_arr[1]() + "</br>");
+            document.write(get_arr[2]() + "</br>");
+            document.write(get_arr[3]() + "</br>");
+
+            document.write("<h2>Third Example</h2>");
+            
+            function outer3(){
+                var b = 10;
+                function inner(){
+                    var a = 20;
+                    document.write("a = " + a + " - b = " + b + "</br>"); 
+                    a++;
+                    b++;
+                }
+                return inner;
+            }
+
+            var X = outer3();
+            var Y = outer3();
+
+            X(); //Invoke X first time
+            X(); //Invoke X second time
+            X(); //Invoke X third time
+
+            Y(); //Invoke Y first time
+
+            document.write("</br>Testing the execution of closure function inside a LOOP</br></br>");
+            for(var i = 0; i < 4; i++){
+                X();
+            }
+
+            document.write("</br>The variable stores the function, so every time the variable is execute</br>it uses the data stored in the previous execution");
+            document.write("That is why the value of \"b\" keeps increasing");
+
+        </script>
+    </body>
+</html>

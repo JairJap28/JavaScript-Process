@@ -1,0 +1,52 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Inheritance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>OOP Inheritance</h1>
+    <script>
+        //Define a persona class
+        //it will as a base class
+        //in the inheritance hierarchy
+        class Person{
+            //Initialize the name
+            constructor(name){
+                this.name = name;
+            }
+
+            getName(){
+                return 'Name of the person: ' + this.name + '</br>';
+            }
+        }
+
+        //Defining the student class
+        //it it the derived class
+        //it extends from Person
+        class Student extends Person{
+            //Initialize    
+            constructor(name, sId){
+                super(name);
+                this.sId = sId;
+            }
+
+            getStudent(){
+                //calling the getName method of the base
+                //class to get the name
+                return super.getName() + 'Student Id = ' + this.sId + '</br>';
+            }
+        }
+
+        //Creating object
+        var student = new Student('Jap', '52511');
+
+        //Printing
+        document.write(student.getStudent());
+
+
+    </script>
+</body>
+</html>

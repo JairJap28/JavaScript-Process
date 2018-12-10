@@ -1,0 +1,53 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OOP Classes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>OOP Classes</h1>
+    <script>
+        document.write('<h3>Implementing ES6 (ECMAScript 2015)</h3>');
+
+        class Employee{
+            //Definning constructor 
+            //to initialize the properties
+            constructor(Ename, Eid){
+                this.Ename = Ename;
+                this.Eid = Eid;
+            }
+
+            //Method
+            getDetails(){
+                return 'Employee name: ' + this.Ename + ' , Employee id: ' + this.Eid + '</br>';
+            }
+        }
+
+        //Creating an employee
+        var emp = new Employee('Jair', '1234');
+
+        //Printing
+        document.write(emp.getDetails());
+
+        document.write('<h3>Implementing traditional way</h3>');
+
+        function Employee2(Ename, Eid){
+            this.Ename = Ename;
+            this.Eid = Eid;
+        }
+
+        Employee2.prototype.getDetails = function(){
+            return 'Employee name: ' + this.Ename + ' , Employee id: ' + this.Eid + '</br>';
+        }
+
+        emp = new Employee2('Jap', '1234');
+        document.write(emp.getDetails() + '</br>');
+
+        
+
+
+    </script>
+</body>
+</html>

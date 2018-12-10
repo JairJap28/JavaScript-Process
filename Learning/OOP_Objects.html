@@ -1,0 +1,57 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OOP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <h1>OOP Objects</h1>
+
+    <script>
+        
+        document.write('<h3>Using an Object literal</h3>');
+        //Defining obhect 
+        var Person = {
+            //Properties
+            first_name : 'Jair',
+            last_name : 'Jimenez',
+
+            //Methods
+            getName : function(){
+                return 'Person name is: ' + this.first_name + ' ' + this.last_name + '</br>';
+            },
+
+            //Object within object
+            phone_number : {
+                Mobile : '3183937467',
+                LandLine : '+57'
+            }
+        }
+
+        document.write(Person.getName());
+        document.write('Person First Name: ' + Person.first_name + '</br>LandLine number: ' + this.Person.phone_number.LandLine);
+
+        document.write('<h3>Using an Object constructor</h3>');
+
+        //Constructor to initialize variables
+        function Person1(first, last){
+            this.first_name = first;
+            this.last_name = last;
+        }
+
+        //Using prototype to define methods
+        Person1.prototype.getDetails = function(){
+            return 'Person name is: ' + this.first_name + ' ' + this.last_name + '</br>';
+        }
+
+        var p1 = new Person1('Jap', 'Munevar');
+        document.write(p1.first_name + '</br>');
+        document.write(p1.getDetails());    
+
+
+    </script>
+</body>
+</html>

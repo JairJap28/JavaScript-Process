@@ -1,0 +1,40 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            function welcomeMsg(name){
+                document.write("Hello " + name + " welcome to GeeksForGeeks <br/>");
+            }    
+
+            //Creating a variable
+            var nameVal = "Admin";
+
+            //Calling the function
+            welcomeMsg(nameVal);
+
+
+            //creating a kind of private variable
+            //this can be seen as Object oriented program
+            var person = function(){
+                var name = "Jap";
+                return{
+                    getName : function(){
+                        return name;
+                    },
+                    setName : function(nameIn){
+                        name = nameIn;
+                    }
+                };
+            }();
+
+            welcomeMsg(person.getName());
+
+            person.setName("Jair");
+            welcomeMsg(person.getName());
+
+
+        </script>
+    </body>
+</html>

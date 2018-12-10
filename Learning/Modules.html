@@ -1,0 +1,48 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+        
+            //Rectangle Module
+
+            function Rectangle(){
+                var length;
+                var width;
+
+                function create(l, w){
+                    length = l;
+                    width = w;
+                }
+
+                function getArea(){
+                    return (length * width);
+                }
+
+                function getPerimeter(){
+                    return (2 * (length + width));
+                }
+
+                //This is the object to consist public members
+                //the rest are private members
+                var publicAPI = {
+                    create : create,
+                    getArea : getArea,
+                    getPerimeter : getPerimeter
+                };
+
+                return publicAPI;
+            }
+
+            //Create a Rectangle module instance
+            var myRect = Rectangle();
+            myRect.create(5,4);
+
+            document.write("Area: " + myRect.getArea() + "</br>");
+            document.write("Perimeter: " + myRect.getPerimeter() + "</br>");        
+
+
+        </script>
+    </body>
+</html>
