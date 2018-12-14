@@ -1,0 +1,28 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OOP Objects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        //Object with function
+        let school = {
+            name: 'City School',
+            location: 'Delhi',
+            establiched: 1995,
+
+            displayInfo: function(){
+                document.write(this.name + ' was established in ' + this.establiched + ' at ' + this.location);
+            }
+        };
+
+        //Execute
+        school.displayInfo();
+
+    </script>
+    
+</body>
+</html>
