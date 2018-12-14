@@ -4,6 +4,18 @@ const contex = canvas.getContext('2d');
 //Scale the context because pieces appear small
 contex.scale(20,20);
 
+//create colors
+const colors = [
+    null,
+    'red',
+    'blue',
+    'violet',
+    'green',
+    'purple',
+    'orange',
+    'pink'
+];
+
 //to take control over the time that the piece
 //should take to go down one step
 let dropCounter = 0;
@@ -16,19 +28,32 @@ let lastTime = 0;
 //this is the space of work
 //where the pieces will be stored
 const arena = createMatrix(12, 20);
-console.log(arena);
-console.table(arena);
-
-//This is the T figure
-const matrix = [
-    [0,0,0],
-    [1,1,1],
-    [0,1,0], 
-];
 
 const player = {
-    pos: {x: 5, y: 5},
-    matrix: matrix,
+    pos: {x: 0, y: 0},
+    matrix: null,
+    score: 0,
+}
+
+function arenaSweep(){
+
+    let rowCounter = 1;
+
+    outer: for(let y = arena.length - 1; y >= 0; y--){
+         for(let x = 0; x < arena[y].length; x++){
+             if(arena[y][x] === 0){
+                 continue outer;
+             }
+         }
+         //take the empty row
+         const row = arena.splice(y, 1)[0].fill(0);
+         //add the empty row to the top
+         arena.unshift(row);
+         y++;
+
+         player.score += rowCounter * 10;
+         rowCounter *= 2;
+    }
 }
 
 function collide(arena, player){
@@ -57,6 +82,66 @@ function createMatrix(width, height){
     return matrix;
 }
 
+function createPiece(type){
+    if(type === 'T'){
+        //This is the T figure
+        return [
+            [0,0,0],
+            [1,1,1],
+            [0,1,0] 
+        ];
+    }
+    else if(type === 'O'){
+        //This is the O figure
+        return [
+            [2,2],
+            [2,2]
+        ];
+    }
+    else if(type === 'L'){
+        //This is the L figure
+        return [
+            [0,3,0],
+            [0,3,0],
+            [0,3,3]
+        ];
+    }
+    else if(type === 'J'){
+        //This is the J figure
+        return [
+            [0,4,0],
+            [0,4,0],
+            [4,4,0]
+        ];
+    }
+    else if(type === 'I'){
+        //This is the I figure
+        return [
+            [0,5,0,0],
+            [0,5,0,0],
+            [0,5,0,0],
+            [0,5,0,0]
+        ];
+    }
+    else if(type === 'S'){
+        //This is the S figure
+        return [
+            [0,6,6],
+            [6,6,0],
+            [0,0,0]
+        ];
+    }
+    else if(type === 'Z'){
+        //This is the S figure
+        return [
+            [7,7,0],
+            [0,7,7],
+            [0,0,0]
+        ];
+    }
+}
+
+
 function draw(){
     contex.fillStyle = '#000' ;
     contex.fillRect(0,0, canvas.clientWidth, canvas.height);
@@ -71,7 +156,7 @@ function drawMatrix(matrix, offset){
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if(value !== 0){
-                contex.fillStyle = 'red';
+                contex.fillStyle = colors[value];
                 contex.fillRect(x + offset.x,
                                 y + offset.y,
                                 1, 1);
@@ -95,6 +180,10 @@ function update(time = 0){
     requestAnimationFrame(update);
 }
 
+function updateScore(){
+    document.getElementById('score').innerText = player.score;
+}
+
 //copy the final position of the piece into to the space of work
 function merge(arena, player){
     player.matrix.forEach((row, y) => {
@@ -114,6 +203,21 @@ function playerMove(direction){
     }
 }
 
+function playerReset(){
+    const pieces = 'ILJOTSZ';
+    player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+    player.pos.y = 0;
+    player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
+
+    //Check if the game is over
+    if(collide(arena, player)){
+        arena.forEach(row => row.fill(0));
+        alert("Game Over!!!");
+        player.score = 0;
+        updateScore();
+    }
+}
+
 //Make the piece down a step
 function playerDrop(){
     player.pos.y++;
@@ -122,6 +226,9 @@ function playerDrop(){
     if(collide(arena, player)){
         player.pos.y--;
         merge(arena, player);
+        playerReset();
+        arenaSweep();
+        updateScore();
         player.pos.y = 0;
     }
     dropCounter = 0;
@@ -156,6 +263,34 @@ function rotateRight(matrix){
     return copy;
 }
 
+function checkRotation(dir){
+    const pos = player.pos.x;
+    let offset = 1;
+    rotate(player.matrix, dir);
+    while(collide(arena, player)){
+        player.pos.x += offset;
+        offset = -(offset + (offset > 0 ? 1 : -1));
+        if(offset > player.matrix[0].length){
+            rotate(player.matrix, -dir);
+            player.pos.x = pos;
+            return;
+        }
+    }
+}
+
+function rotate(dir){
+    //Check if there is no colliate when the rotation is done
+
+    if(dir === -1){
+        //rotate left
+        player.matrix = rotateLeft(player.matrix);
+    }
+    else{
+        //rotate right  
+        player.matrix = rotateRight(player.matrix);
+    }
+}
+
 document.addEventListener('keydown', event => {
     if(event.keyCode === 37){
         //The number 37 represents the arrow left
@@ -171,22 +306,15 @@ document.addEventListener('keydown', event => {
     }
     else if(event.keyCode === 82){
         //The number 82 represents the letter R -> Right
-        let offset = 1;
-        player.matrix = rotateRight(player.matrix);
-        while(collide(arena, matrix)){
-            player.pos.x += offset;
-            offset = -(offset + (offset > 0 ? 1 : - 1));
-
-            if(offset > player.matrix[0].length){
-                
-            }
-        }
+        checkRotation(1);
 
     }
     else if(event.keyCode === 76){
         //The number 79 represents the letter L -> Left
-        player.matrix = rotateLeft(player.matrix);
+        checkRotation(-1);
     }
 });
 
+playerReset();
+updateScore();
 update();
