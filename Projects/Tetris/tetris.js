@@ -1,8 +1,14 @@
+const canvasPiece = document.getElementById('nextPiece');
+const contextPiece = canvasPiece.getContext('2d');
+
 
 const canvas = document.getElementById('tetris');
 const contex = canvas.getContext('2d');
 //Scale the context because pieces appear small
 contex.scale(20,20);
+contextPiece.scale(50,50);
+
+var counter = 0;
 
 //create colors
 const colors = [
@@ -28,6 +34,13 @@ let lastTime = 0;
 //this is the space of work
 //where the pieces will be stored
 const arena = createMatrix(12, 20);
+
+//this will work to store the next piece that
+//it is going to be shown
+const matrixNext = {
+    type: '',
+    matrix: null
+};
 
 const player = {
     pos: {x: 0, y: 0},
@@ -141,15 +154,61 @@ function createPiece(type){
     }
 }
 
-
-function draw(){
+function prepareMatrix(){
     contex.fillStyle = '#000' ;
     contex.fillRect(0,0, canvas.clientWidth, canvas.height);
+    contex.strokeStyle = "#fff";
+    contex.lineWidth = 0.05;
+
+    
+}
+
+function prepareNextPiece(){
+    contextPiece.fillStyle = '#000' ;
+    contextPiece.fillRect(0,0, canvasPiece.clientWidth, canvasPiece.height);
+    contextPiece.strokeStyle = "#fff";
+    contextPiece.lineWidth = 0.03;
+}
+
+//properties to draw the piece over the borad
+function draw(){
+    prepareMatrix();
 
     //draw the arena to see the previous pieces
     drawMatrix(arena, {x: 0, y: 0});
     //draw the player matrix to see the current piece
     drawMatrix(player.matrix, player.pos);
+}
+
+//properties to draw the piece in next piece
+function drawNext(){
+    prepareNextPiece();
+
+    if(matrixNext.type === 'L' || matrixNext.type === 'I'){
+        var copy = rotateLeft(matrixNext.matrix);
+        drawNextPiece(copy, {x:2.5, y: 0.5});
+    }
+    else{
+        //show the current piece
+        drawNextPiece(matrixNext.matrix, {x: 3, y: 0.9});
+    }
+}
+
+function drawNextPiece(matrix, offset){
+        matrix.forEach((row, y) => {
+        row.forEach((value, x) => {
+            if(value !== 0){
+                contextPiece.fillStyle = colors[value];
+                contextPiece.fillRect(x + offset.x,
+                                y + offset.y,
+                                1, 1);
+                
+                contextPiece.strokeRect(x + offset.x,
+                                        y + offset.y,
+                                        1, 1);
+            }
+        });
+    });
 }
 
 function drawMatrix(matrix, offset){
@@ -160,6 +219,10 @@ function drawMatrix(matrix, offset){
                 contex.fillRect(x + offset.x,
                                 y + offset.y,
                                 1, 1);
+
+               contex.strokeRect(x + offset.x,
+                                        y + offset.y,
+                                        1, 1);
             }
         });
     });
@@ -205,14 +268,28 @@ function playerMove(direction){
 
 function playerReset(){
     const pieces = 'ILJOTSZ';
-    player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+
+    //If it is empty, it means it just starts
+    if(matrixNext.matrix === null){
+        matrixNext.type = pieces[pieces.length * Math.random() | 0];
+        matrixNext.matrix = createPiece(matrixNext.type);
+        player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+    }
+    else{
+        player.matrix = matrixNext.matrix;
+        matrixNext.type = pieces[pieces.length * Math.random() | 0];
+        matrixNext.matrix = createPiece(matrixNext.type);
+    }
+
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
+
+    drawNext();
 
     //Check if the game is over
     if(collide(arena, player)){
         arena.forEach(row => row.fill(0));
-        alert("Game Over!!!");
+        addScore(player.score);
         player.score = 0;
         updateScore();
     }
@@ -291,6 +368,30 @@ function rotate(dir){
     }
 }
 
+function addScore(text){
+    var list = document.getElementById('list');
+
+    var item = document.createElement('li');
+    item.innerText = text + " pts";
+
+    if(counter < 7){
+        list.insertBefore(item, list.childNodes[0]);
+        counter++;
+    }
+    else{
+        list.removeChild(list.lastChild);
+        list.insertBefore(item, list.childNodes[0]);
+        counter--;
+        var color = Math.floor(Math.random() (6)) + 1;
+    }    
+}
+
+function start(){
+    playerReset();
+    updateScore();
+    update();
+}
+
 document.addEventListener('keydown', event => {
     if(event.keyCode === 37){
         //The number 37 represents the arrow left
@@ -315,6 +416,5 @@ document.addEventListener('keydown', event => {
     }
 });
 
-playerReset();
-updateScore();
-update();
+prepareMatrix();
+prepareNextPiece();

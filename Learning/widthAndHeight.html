@@ -1,0 +1,43 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Browser Inner width and height</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body{
+            text-align: center;
+        }
+        .gfg{
+            font-size: 40px;
+            font-weight: bold;
+            color: rgb(243, 95, 95);
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="gfg">JairJap developer</div>
+    <h2>Browser Window</h2>
+    <p id="demo"></p>
+
+    <script type="text/javascript">
+        var height;
+        var width;
+        var result;
+
+        //height and width of browser window
+        width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+        //Display width and height
+        result = document.getElementById("demo");
+        result.innerHTML = "Browser inner width: " + width + "<br>Browser inner height: " + height;
+        
+    </script>
+    
+</body>
+</html>

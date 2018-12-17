@@ -1,0 +1,34 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Location Protocol Property</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles -->
+    <style>
+        body{
+            text-align: center;
+        }
+        h1{
+            color: rgb(243, 95, 95);
+        }
+    </style>
+
+    <!-- Script -->
+    <script type="text/javascript">
+        //Function that gets the protocol
+        function protocol(){
+            var protocol = location.protocol;
+            alert("The protocol is:" + protocol) ;
+        }
+    </script>
+
+</head>
+<body>
+    <h1>JairJap Developer</h1>
+    <p>Click to know the protocol of current URL</p>
+    <button onclick="protocol()">Protocol</button>
+</body>
+</html>

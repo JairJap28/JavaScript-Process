@@ -1,0 +1,78 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>How to handle this keyword</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script type="text/javascript">
+
+        document.write("<h3>This with function invocation</h3>");
+
+        function doSomething(){
+            //adds a propone property to the Window object
+            this.propone = "Test value";
+        }
+
+        //function invocation
+        doSomething();
+        document.write(window.propone);
+
+        document.write("<h3>This with method invocation</h3>");
+        let person = {
+            name: "Jair",
+            age: 20,
+            logInfo: function(){
+                document.write(this.name + " is " + this.age + " years old");
+            }
+
+            //logInfo is a method of person
+        };
+
+        person.logInfo();
+
+        document.write("<h4>Where does 'this' point?</h4>");
+        let add = {
+            num: 0,
+            calc: function(){
+                //logs the add object
+                document.write(this + ' ');
+                this.num += 1;
+                return this.num;
+            }            
+        };
+
+        //logs 1
+        document.write(add.calc() + '<br>');
+        //logs 2
+        document.write(add.calc());
+
+        document.write("<h4>What happen in a nested function?</h4>");
+
+        let add2 = {
+            num: 0,
+            calc: function(){
+                //logs the add object
+                document.write(this + ' ');
+
+                function innerFunc(){
+                    this.num += 1;
+
+                    //logs the window object
+                    document.write(this + ' ');
+
+                    return this.num;
+                }
+                return innerFunc();
+            }
+        };
+
+        document.write(add2.calc() + '<br>');
+
+        document.write(add2.calc());
+
+    </script>
+</body>
+</html>

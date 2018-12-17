@@ -1,0 +1,66 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Var vs Let</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script type="text/javascript">
+
+        document.write("<h2>First try</h2>");
+
+        var x = 5;
+        document.write(x , "\n");
+        //calling x after definition
+
+        let y = 10;
+        document.write(y, "\n");
+        //calling y after definition
+
+        document.write(z, "\n");
+        //calling z before definition will return undefined
+        var z = 2;
+
+        document.write(a, "\n");
+        //calling let a before definiton will ive error
+        let a = 3;
+
+
+        document.write("<h2>Second try</h2>");
+        function colour(){
+            setInterval(function(){
+                if(document.getElementById('var').style.color == 'black'){
+                    var col1 = 'red';
+                }
+                else{
+                    col1 = 'black';
+                }
+
+                if(document.getElementById('let').style.color == 'black'){
+                    let col2 = 'red';
+                }
+                else{
+                    col2 = 'black';
+                }
+
+                //setting value of color 2 through let
+                document.getElementById('var').style.color = col1;
+                document.getElementById('let').style.color = col2;
+
+            }, 500);
+        }
+
+    </script>
+
+    <h3 id="var" style="color:black;">JairJap Dev</h3>
+    <p>The above has is handle with var declaration</p>
+    <h3 id="let" style="color:black;">JairJap Dev</h3>
+    <p>The above has is handle with let declaration</p>
+    <button id="btn" onclick="colour()">Start</button>
+
+    <p>The reason why we get error is because the scope of declaring variables with "let"</p>
+    
+</body>
+</html>
