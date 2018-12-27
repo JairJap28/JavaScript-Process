@@ -1,0 +1,109 @@
+body{
+    width: 70%;
+    margin: auto;
+    font-family: "Segoe UI";
+}
+
+
+.sectionProgress{
+    height: 220px;
+    border: 3px;
+    border-style: solid;
+    border-color: rgba(243, 95, 95, 0.49);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin: 15px 0 17px 0;
+}
+
+.sectionProgress h3{
+    font-size: 53px;
+    color: rgb(113, 111, 111);
+    margin: 0 0 10px 0;
+}
+
+.sectionProgress h4{
+    font-size: 45px;
+    color: rgb(188, 186, 186);
+}
+
+.sectionProgress h5{
+    font-size: 20px;
+    color: rgb(188, 186, 186);
+}
+
+.sectionProgress h6{
+    text-align: end;
+    color: gray;
+    margin: 0 10px 0 0;
+}
+
+
+.sectionPendingTask h2{
+    font-weight: bold;
+    font-size: 26px;
+    color: rgb(113, 111, 111);
+    margin: 0 0 15px 0;
+}
+
+.sectionPendingTask .items{
+    height: 45px;
+    display: grid;
+    grid-template-columns: 150px auto 85px 85px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(112, 112, 112);
+    border-radius: 5px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    margin: 0 0 6px 0;
+}
+
+.sectionPendingTask .items div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: auto;
+    
+}
+
+.sectionPendingTask .items div h4{
+    color: #000;
+    font-weight: bold;
+    margin: 0 10px 0 0;
+}
+
+.sectionPendingTask .items .ratingBar .checked{
+    color: rgb(255, 239, 12);
+}
+
+.sectionPendingTask .items .ratingBar .noChecked{
+    color: rgb(212, 212, 212);
+}
+
+.sectionPendingTask .items button{
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    border-style: none;
+    position: relative;
+}
+
+.sectionPendingTask .items button .material-icons{
+    font-size: 18px;
+    color: white;
+    position: absolute;
+    top: 12px;
+    left: 9px;
+    transform: translate(-50%, -50%);
+    width: 10px;
+}
+
+.sectionPendingTask .items button:first-of-type{
+    margin: 0 5px 0 0;
+    background: rgb(0, 170, 23);
+}
+
+.sectionPendingTask .items button:last-of-type{
+    background: rgb(194, 21, 21);
+}
+
