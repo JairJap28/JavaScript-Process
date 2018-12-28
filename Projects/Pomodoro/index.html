@@ -1,5 +1,6 @@
 <!DOCTYPE <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +18,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
+
 <body>
 
     <section class="sectionProgress">
@@ -30,95 +32,132 @@
 
         <section class="up">
             <section id="inTask">
-                    <h4>Task</h4>
-                    <input type="text" placeholder="Task....">
+                <h4>Task</h4>
+                <input type="text" placeholder="Task...." id="input_task">
+            </section>
+
+            <section id="inDescription">
+                <h4>Description</h4>
+                <section id="inputField">
+                    <input type="text" placeholder="Write a short description" id="input_description">
+                    <h6>26/100</h6>
                 </section>
-            
-                <section id="inDescription">
-                    <h4>Description</h4>
-                    <section id="inputField">
-                        <input type="text" placeholder="Write a short description">
-                        <h6>26/100</h6>
-                    </section>
-                        
-                </section>
+            </section>
         </section>
 
         <section class="down">
-            <section>
-                <h5>Work time</h5>
-                <input type="text" placeholder="00:00:00">
-            </section>
-            
-            <section>
-                <h5>Short Break</h5>
-                <input type="text" placeholder="00:00:00">
+
+            <section class="sectionTime">
+                <section>
+                    <h5>Work time:</h5>
+                    <input type="text" placeholder="00:00:00" id="input_work_time">
+                </section>
+
+                <section>
+                    <h5>Short Break:</h5>
+                    <input type="text" placeholder="00:00:00" id="input_short_break">
+                </section>
+
+                <section>
+                    <h5>Long Break:</h5>
+                    <input type="text" placeholder="00:00:00" id="input_long_break">
+                </section>
             </section>
 
-            <section>
-                <h5>Long Break</h5>
-                <input type="text" placeholder="00:00:00">
+            <section class="buttons">
+                <div class="containerRating">
+                    <div class="ratingBar">
+                        <i class="material-icons start" id="star1">start</i>
+                        <i class="material-icons start" id="star2">start</i>
+                        <i class="material-icons start" id="star3">start</i>
+                        <i class="material-icons start" id="star4">start</i>
+                        <i class="material-icons start" id="star5">start</i>
+                    </div>
+                    <h4>Priority</h4>
+                </div>
+
+                <div class="containerButtons">
+                    <div>
+                        <button class="material-icons" id="btn_add">add</button>
+                        <h4>Add</h4>
+                    </div>
+                    <div>
+                        <button class="material-icons" id="btn_play">play_arrow</button>
+                        <h4>Play</h4>
+                    </div>
+                </div>
             </section>
+
+
         </section>
-
-        
     </section>
 
     <section class="sectionPendingTask">
 
         <h2>Pending Task</h2>
 
-        <div class="items">
-            <div id="itemTask">
-                <h4>Task:</h4>
-                    <h3>Read Book</h3>
+        <ul id="listTask">
+            <li>
+                <div class="items">
+                    <div id="itemTask">
+                        <h4>Task:</h4>
+                        <h3>Read Book</h3>
+                    </div>
+
+                    <div id="itemDescription">
+                        <h4>Description:</h4>
+                        <h3>Read pages 100 - 180 from the midas touch</h3>
+                    </div>
+
+                    <div class="ratingBar">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+
+                    <div class="buttons">
+                        <button><i class="material-icons">play_arrow</i></button>
+                        <button><i class="material-icons">remove</i></button>
+                    </div>
                 </div>
+            </li>
+
+            <li>
+                    <div class="items">
+                        <div id="itemTask">
+                            <h4>Task:</h4>
+                            <h3>Read</h3>
+                        </div>
+    
+                        <div id="itemDescription">
+                            <h4>Description:</h4>
+                            <h3>This is short</h3>
+                        </div>
+    
+                        <div class="ratingBar">
+                            <i class="fa fa-star checked"></i>
+                            <i class="fa fa-star checked"></i>
+                            <i class="fa fa-star checked"></i>
+                            <i class="fa fa-star checked"></i>
+                            <i class="fa fa-star checked"></i>
+                        </div>
+    
+                        <div class="buttons">
+                            <button><i class="material-icons">play_arrow</i></button>
+                            <button><i class="material-icons">remove</i></button>
+                        </div>
+                    </div>
+                </li>
+
             
-                <div id="itemDescription">
-                    <h4>Description:</h4>
-                    <h3>Read pages 100 - 180 from the midas touch</h3>
-                </div> 
+        </ul>
 
-                <div class="ratingBar">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>
-
-                <div class="buttons">
-                    <button><i class="material-icons">play_arrow</i></button>
-                    <button><i class="material-icons">remove</i></button>
-                </div>
-        </div>
-
-        <div class="items">
-            <div id="itemTask">
-                <h4>Task:</h4>
-                    <h3>Read Book</h3>
-                </div>
-                
-                <div id="itemDescription">
-                    <h4>Description:</h4>
-                    <h3>Read pages 100 - 180 from the midas touch</h3>
-                </div> 
-    
-                <div class="ratingBar">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star noChecked"></span>
-                </div>
-    
-                <div class="buttons">
-                    <button><i class="material-icons">play_arrow</i></button>
-                    <button><i class="material-icons">remove</i></button>
-                </div>
-            </div>
-              
     </section>
-    
+
+    <script type="text/javascript" src="RESOURCES/JS/main.js"></script>
+
 </body>
+
 </html>

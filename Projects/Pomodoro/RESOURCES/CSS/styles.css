@@ -39,19 +39,19 @@ body{
 }
 
 .sectionCreateTask{
-    display: grid;
-    grid-template-rows: 60px auto;
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+    padding: 15px;
+    background: rgb(243, 95, 95);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.16), 0 5px 8px 0 rgba(0, 0, 0, 0.16);
     margin: 0 0 50px 0;
 }
 
-.sectionCreateTask .up{
-    height: 160px;
-    border-radius: 10px;
-    background: rgb(243, 95, 95);
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.16), 0 5px 8px 0 rgba(0, 0, 0, 0.16);
+.sectionCreateTask .up{    
     display: grid;
     grid-template-columns: 300px auto;
-    padding: 15px;
+    margin: 0 0 2% 0;
 }
 
 .sectionCreateTask #inTask,
@@ -114,15 +114,39 @@ body{
 }
 
 .sectionCreateTask .down{
-    height: 160px;
-    display: grid;
-    grid-template-columns: auto auto auto;
-}
-
-.sectionCreateTask .down section{
+    width: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: absolute;
+}
+
+.sectionCreateTask .down .sectionTime{
+    width: 40%;
+    display: flex;
+    margin: 0;
+}
+
+.sectionCreateTask .down .sectionTime::before{
+    content: '';
+    width: 40%;
+    height: 1px;
+    background: white;
+    position: absolute;
+    top: -1px;
+}
+
+.sectionCreateTask .down .sectionTime::after{
+    content: '';
+    width: 40%;
+    height: 1px;
+    background: white;
+    position: absolute;
+    top: 47px;
+}
+
+.sectionCreateTask .down .sectionTime section{
+    display: flex;
     font-style: italic;
 }
 
@@ -133,8 +157,106 @@ body{
 }
 
 .sectionCreateTask .down input{
+    width: 56px;
     height: 26px;
+    padding: 5px;
+    margin: 0 20px 0 0;
 }
+
+.sectionCreateTask .down .buttons{
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    float: right;
+}
+
+.sectionCreateTask .down .buttons
+.ratingBar{
+    margin: 0 0 0 10px;
+}
+
+.sectionCreateTask .down .buttons
+.ratingBar i{
+    width: 24px;
+}
+
+.sectionCreateTask .down .buttons
+.ratingBar .start{
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+}
+
+.sectionCreateTask .down .buttons
+.ratingBar {
+    color: rgb(212, 212, 212);
+}
+
+
+.sectionCreateTask .down .buttons h4{
+    font-size: 13px;
+    font-style: italic;
+    font-weight: normal;
+    text-align: center;
+}
+
+.sectionCreateTask .down .buttons
+ .containerButtons{
+    display: flex;
+    flex-direction: row; 
+}
+
+.sectionCreateTask .down .buttons 
+.containerButtons div:first-of-type{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 30% 0 0; 
+}
+
+.sectionCreateTask .down .buttons 
+.containerButtons h4{
+    width: 38px;
+}
+
+.sectionCreateTask .down .buttons 
+.containerButtons button{
+    height: 38px;
+    width: 38px;
+    border: 2px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 19px;
+    position: relative;
+}
+
+.sectionCreateTask .down .buttons 
+.containerButtons div:first-of-type button{
+    background: rgb(135,135,135);
+}
+
+.sectionCreateTask .down .buttons 
+.containerButtons div:first-of-type 
+button:hover{
+    background: rgb(78, 78, 78);
+}
+
+.sectionCreateTask .down .buttons 
+.containerButtons div:last-of-type button{
+    background: rgb(0,170,23);
+}
+
+.sectionCreateTask .down .buttons 
+.containerButtons div:last-of-type 
+button:hover{
+    background: rgb(1, 129, 18);
+}
+
+.sectionCreateTask .down .buttons
+ .containerButtons .material-icons{
+     color: white; 
+ }
 
 
 .sectionPendingTask h2{
@@ -145,9 +267,9 @@ body{
 }
 
 .sectionPendingTask .items{
-    height: 45px;
+    min-height: 45px;
     display: grid;
-    grid-template-columns: 150px auto 85px 85px;
+    grid-template-columns: 170px auto 85px 85px;
     border: 1px;
     border-style: solid;
     border-color: rgb(112, 112, 112);
@@ -159,9 +281,12 @@ body{
 .sectionPendingTask .items div{
     display: flex;
     flex-direction: row;
-    text-align: center;
-    margin: auto;
-    
+    padding: 10px;
+}
+
+.sectionPendingTask .items 
+#itemDescription{
+    margin: 0 15px 0 0;
 }
 
 .sectionPendingTask .items div h4{
