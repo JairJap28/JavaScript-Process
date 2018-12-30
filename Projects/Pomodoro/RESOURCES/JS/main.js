@@ -17,6 +17,17 @@ stars[2].addEventListener("mouseover", function(){fillStarCrateTask(3)});
 stars[3].addEventListener("mouseover", function(){fillStarCrateTask(4)});
 stars[4].addEventListener("mouseover", function(){fillStarCrateTask(5)});
 
+document.getElementById("input_description").addEventListener("input", function(){
+    var can = this.value.length;
+    if(can >= 100){
+        this.value = this.value.substring(0, 100);
+        document.getElementById("cant_characters").innerText = "100/100";
+    }
+    else{
+        document.getElementById("cant_characters").innerText = can + "/100";
+    }
+});
+
 //when the users click the button
 document.getElementById("btn_add").addEventListener("click", function(){
 
@@ -28,9 +39,25 @@ document.getElementById("btn_add").addEventListener("click", function(){
         shortBreak: document.getElementById("input_short_break").valu,
         priority: priorityGlobal
     };
-    
-    addToList(task);
+
+    if(validateFields(task)){
+        addToList(task);
+    }
 });
+
+//Validate that fields are not empty
+function validateFields(newTask){
+    if(newTask.name === ""){
+        return false;
+    }
+    if(newTask.description === ""){
+        return false;
+    }
+    if(newTask.workTime === ""){
+        return false;
+    }
+    return true;
+}
 
 function fillStarCrateTask(pos){
     //store the priority
@@ -144,19 +171,51 @@ function addItemToDOM(newTask){
     //splice allows us to add items at specific
     //index
     storedTask.splice(pos, 0, newTask);
-
     list.insertBefore(item, list.childNodes[pos]);
+
+    //set effect
+    //setColorEffect(pos);
 }
 
-function getPositionTask(priority){    
-    var pos = 0;
+//After adding the task
+//set opcity to see the change
+function setColorEffect(pos){
+
+    //To avoid problem with the effect
+    document.getElementById("btn_add").disabled = true;
+
+    var opacity = 1;
+    //get the list
+    var list = document.getElementById('listTask');
+    //var get item
+    var item = list.childNodes[pos];
+    item.style.background = "rgba(243,95,95," + opacity + ")";
+
+    setTimeout(fillItem, 100, opacity, pos);
+}
+
+function fillItem(opacity, pos){
+    //get the list
+    var list = document.getElementById('listTask');
+    //var get item
+    var item = list.childNodes[pos];
+    item.style.background = "rgba(243,95,95," + opacity + ")";
+    if(opacity > 0){
+        opacity -= 0.8;
+        setTimeout(fillItem, 50, opacity, pos);
+    }
+    else{
+        document.getElementById("btn_add").disabled = false;
+    }
+}
+
+function getPositionTask(priority){ 
     //iterate through the list
-    for(var i = storedTask.length - 1; i >= 0; i--){
-        debugger;
-        if(storedTask[i].priority < priority){
-            pos = i;
-            break;
+    for(var i = 0; i < storedTask.length; i++){
+        var aux = storedTask[i].priority;
+        if(aux <= priority){
+            return i;
         }
     }
-    return pos;
+    return 0;
 }

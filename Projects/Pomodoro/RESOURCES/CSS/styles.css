@@ -171,6 +171,10 @@ body{
     float: right;
 }
 
+.sectionCreateTask .down .buttons button:disabled{
+    opacity: 0.5;
+}
+
 .sectionCreateTask .down .buttons
 .ratingBar{
     margin: 0 0 0 10px;
@@ -258,6 +262,11 @@ button:hover{
      color: white; 
  }
 
+.sectionPendingTask ul:empty::after{
+    content: "There is no any task yet";
+    color: rgba(112, 112, 112, 0.5);
+    font-size: 16px;
+}
 
 .sectionPendingTask h2{
     font-weight: bold;
@@ -276,6 +285,11 @@ button:hover{
     border-radius: 5px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     margin: 0 0 6px 0;
+}
+
+.sectionPendingTask .items::after{
+    min-height: 45px;
+    transition: all 400ms;
 }
 
 .sectionPendingTask .items div{
@@ -302,6 +316,7 @@ button:hover{
 .sectionPendingTask .items .ratingBar .noChecked{
     color: rgb(212, 212, 212);
 }
+
 
 .sectionPendingTask .items button{
     width: 25px;
