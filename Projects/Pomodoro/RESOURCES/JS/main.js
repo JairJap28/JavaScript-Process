@@ -4,6 +4,11 @@ var storedTask = [];
 
 var priorityGlobal = 1;
 
+//This variable will serve   to
+//check if there is any task in
+//progress
+var inProgress = false;
+
 
 stars[0] = document.getElementById("star1");
 stars[1] = document.getElementById("star2");
@@ -32,6 +37,7 @@ document.getElementById("input_description").addEventListener("input", function(
 document.getElementById("btn_add").addEventListener("click", function(){
 
     var task = {
+        id: '_' + Math.random().toString(36).substr(2, 9),
         name: document.getElementById("input_task").value,
         description: document.getElementById("input_description").value,
         workTime: document.getElementById("input_work_time").value,
@@ -40,23 +46,25 @@ document.getElementById("btn_add").addEventListener("click", function(){
         priority: priorityGlobal
     };
 
-    if(validateFields(task)){
+    var validate = validateFields(task);
+
+    if(validate.flag){
         addToList(task);
+    }
+    else{
+        showSnackbar(validate.field);
     }
 });
 
 //Validate that fields are not empty
 function validateFields(newTask){
     if(newTask.name === ""){
-        return false;
+        return {flag: false, field: 0};
     }
     if(newTask.description === ""){
-        return false;
+        return {flag: false, field: 1};
     }
-    if(newTask.workTime === ""){
-        return false;
-    }
-    return true;
+    return {flag: true, field: -1};
 }
 
 function fillStarCrateTask(pos){
@@ -74,7 +82,33 @@ function fillStarCrateTask(pos){
 //Store the new task
 function addToList(newTask){
     addItemToDOM(newTask);
-    console.log(storedTask);
+}
+
+//Start a task
+function playTask(){
+    if(!inProgress){
+        console.log(this.parentElement);
+    }
+}
+
+//Remove an item from the pending task
+function removeItem(){
+
+    var items = this.parentElement.parentNode;
+    var li = items.parentElement;
+    var lu = li.parentElement;
+
+    //get the input, it is placed 
+    //in the 4 position
+    var hiddenInput = items.childNodes[4];
+    var pos = getPositionStored(hiddenInput.value);
+
+    if(pos !== -1){
+        storedTask.splice(pos, 1);
+        console.log(storedTask);
+    }
+
+    lu.removeChild(li);
 }
 
 function addItemToDOM(newTask){
@@ -147,20 +181,33 @@ function addItemToDOM(newTask){
     icon_play.innerText = "play_arrow";
     btn_play.appendChild(icon_play);
 
+    btn_play.addEventListener('click', playTask);
+
     var btn_remove = document.createElement('button');
     var icon_remove = document.createElement('i');
     icon_remove.classList.add("material-icons");
     icon_remove.innerText = "remove";
     btn_remove.appendChild(icon_remove);
 
+
+    btn_remove.addEventListener('click', removeItem);
     divButtons.appendChild(btn_play);
     divButtons.appendChild(btn_remove);
+
+    //Hiden input to store the id
+    var hiddenIn = document.createElement('input');
+    hiddenIn.setAttribute("id", "hiddenInput");
+    hiddenIn.setAttribute("type", "hidden");
+    hiddenIn.setAttribute("value", newTask.id);
 
     //add all the div to the global div
     divItems.appendChild(divItemTask);
     divItems.appendChild(divDesc);
     divItems.appendChild(divRating);
     divItems.appendChild(divButtons);
+
+    //add the hidden element
+    divItems.appendChild(hiddenIn);
 
     //add everthing to the item
     item.appendChild(divItems);
@@ -217,5 +264,40 @@ function getPositionTask(priority){
             return i;
         }
     }
-    return 0;
+    return storedTask.length;
+}
+
+function getPositionStored(id){
+    for(var i = 0; i < storedTask.length; i++){
+        var auxId = storedTask[i].id;
+        if(auxId === id){
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+function showSnackbar(field){
+
+    var snack = document.getElementById("snackbar");
+
+    //0 for the task field
+    //1 for the description field
+    if(field === 0){
+        snack.innerText = "Fill the Task name field";
+    }
+    else if(field === 1){
+        snack.innerText = "Fill the Description field";
+    }
+
+    
+
+    //add the show class to snack
+    snack.className = "show";
+
+    //after 3 seconds, remove the show class from snackbar
+    setTimeout(function(){
+        snack.className = snack.className.replace("show","");
+    }, 3000);
 }
