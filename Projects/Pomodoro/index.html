@@ -23,8 +23,29 @@
 
     <section class="sectionProgress">
         <h3>There is no any task in progress</h3>
-        <h4>00:00:00</h4>
-        <h5>HH:MM:SS</h5>
+
+        <section class="section_play_task">
+            <section>
+                <h4 id="timeProgress">00:00:00</h4>
+                <h5>HH:MM:SS</h5>
+            </section>
+            
+            <button class="start_task" id="btn_control_pause">
+                <i class="material-icons">pause</i>
+            </button>
+
+            <button class="stop_task" id="btn_control_play">
+                <i class="material-icons">play_arrow</i>
+            </button>
+
+            <section class="section_time_break">
+                    <h4>Time to Break</h4>
+                    <h5 id="timeBreak">00:00:00</h5>
+                </section>
+        </section>
+
+
+
         <h6>Achieved task: 0</h6>
     </section>
 
@@ -46,24 +67,21 @@
         </section>
 
         <section class="down">
-            
+
             <section class="sectionTime">
                 <section>
                     <h5>Work time:</h5>
-                    <input type="number" min="5" max="180" step="1" value="15"
-                     id="input_work_time">
+                    <input type="number" min="5" max="180" step="1" value="15" id="input_work_time">
                 </section>
 
                 <section>
                     <h5>Short Break:</h5>
-                    <input type="number" min="5" max="60" step="1" value="5"
-                    id="input_short_break">
+                    <input type="number" min="5" max="60" step="1" value="5" id="input_short_break">
                 </section>
 
                 <section>
                     <h5>Long Break:</h5>
-                    <input type="number" min="5" max="60" step="1" value="15" 
-                    id="input_long_break">
+                    <input type="number" min="5" max="60" step="1" value="15" id="input_long_break">
                 </section>
             </section>
 

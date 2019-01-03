@@ -1,8 +1,15 @@
 var stars = {};
-
 var storedTask = [];
-
 var priorityGlobal = 1;
+
+//This variables will serte to store
+//the timeOut function
+var timeP;
+var timeB;
+
+//Store the time progress
+var timeObjectP;
+var timeObjectB;
 
 //This variable will serve   to
 //check if there is any task in
@@ -42,9 +49,12 @@ document.getElementById("btn_add").addEventListener("click", function(){
         description: document.getElementById("input_description").value,
         workTime: document.getElementById("input_work_time").value,
         longBreak: document.getElementById("input_long_break").value,
-        shortBreak: document.getElementById("input_short_break").valu,
+        shortBreak: document.getElementById("input_short_break").value,
         priority: priorityGlobal
     };
+
+    timeObjectP = {h: 0, m: task.workTime - 1, s: 59};
+    timeObjectB = {h: 0, m: task.shortBreak - 1, s: 59};
 
     var validate = validateFields(task);
 
@@ -55,6 +65,8 @@ document.getElementById("btn_add").addEventListener("click", function(){
         showSnackbar(validate.field);
     }
 });
+
+document.getElementById("btn_control_pause").addEventListener("click", stopTask);
 
 //Validate that fields are not empty
 function validateFields(newTask){
@@ -86,10 +98,109 @@ function addToList(newTask){
 
 //Start a task
 function playTask(){
+
+    var button = this;
+    var divButtons = button.parentElement;
+    var divItems = divButtons.parentElement;
+    var li = divItems.parentElement;
+    var ul = li.parentElement;
+    var id = divItems.childNodes[4].value;
+    
+    var pos = getPositionStored(id);
+
     if(!inProgress){
-        console.log(this.parentElement);
+
+        document.getElementById("btn_control_pause").style.display = "block";
+        document.getElementById("btn_control_play").style.display = "none";
+
+        inProgress = true;
+        
+        setTimeProgress(timeObjectP);
+        setTimeBreak(timeObjectB);
+
+        //Remove task from pending list
+        storedTask.splice(pos, 1);
+        ul.removeChild(li);
     }
 }
+
+//Stop task
+function stopTask(){
+    inProgress = false;
+    clearTimeout(timeP);
+    clearTimeout(timeB);
+
+    document.getElementById("btn_control_pause").style.display = "none";
+    document.getElementById("btn_control_play").style.display = "block";
+}
+
+function setTimeProgress(time){
+    //The operator is because we need two digits
+    var hh = (parseInt(time.h) < 10 ) ? "0" + parseInt(time.h) : time.h;
+    var mm = (parseInt(time.m) < 10 ) ? "0" + parseInt(time.m) : time.m;
+    var ss = (parseInt(time.s) < 10 ) ? "0" + parseInt(time.s) : time.s;
+
+    document.getElementById("timeProgress").innerHTML = hh + ":" + mm + ":" + ss;
+
+    var update = getTime(hh, mm, ss);
+    timeObjectP = {h: update.h, m: update.m, s: update.s};
+
+    timeP = setTimeout(function(){
+        setTimeProgress({h: update.h, m: update.m, s:update.s});
+    }, 500);
+}
+
+function setTimeBreak(time){
+    //The operator is because we need two digits
+    var hh = (parseInt(time.h) < 10 ) ? "0" + parseInt(time.h) : time.h;
+    var mm = (parseInt(time.m) < 10 ) ? "0" + parseInt(time.m) : time.m;
+    var ss = (parseInt(time.s) < 10 ) ? "0" + parseInt(time.s) : time.s;
+
+    document.getElementById("timeBreak").innerHTML = hh + ":" + mm + ":" + ss;
+
+    var update = getTime(hh, mm, ss);
+    timeObjectB = {h: update.h, m: update.m, s: update.s};
+
+    timeB = setTimeout(function(){
+        setTimeBreak({h: update.h, m: update.m, s:update.s});
+    }, 500);
+}
+
+function getTime(hh, mm, ss){
+    if(ss > 0){
+        ss--;
+    }
+    else{
+        if(mm > 0){
+            mm--;
+        }
+        else{
+            if(hh > 0){
+                hh--;
+            }
+            else{
+                hh = 0;
+                mm = 0;
+                ss = 0;
+            }
+            mm = 0;
+        }
+        ss = 59;
+    }
+
+    if(hh < 10){
+        hh = "0" + hh;
+    }
+    if(mm < 10){
+        mm = "0" + mm;
+    }
+    if(ss < 10){
+        ss = "0" + ss;
+    }
+
+    return {h: hh, m: mm, s: ss};
+}
+
 
 //Remove an item from the pending task
 function removeItem(){
@@ -105,9 +216,7 @@ function removeItem(){
 
     if(pos !== -1){
         storedTask.splice(pos, 1);
-        console.log(storedTask);
     }
-
     lu.removeChild(li);
 }
 
@@ -279,7 +388,6 @@ function getPositionStored(id){
 }
 
 function showSnackbar(field){
-
     var snack = document.getElementById("snackbar");
 
     //0 for the task field
@@ -289,9 +397,7 @@ function showSnackbar(field){
     }
     else if(field === 1){
         snack.innerText = "Fill the Description field";
-    }
-
-    
+    }    
 
     //add the show class to snack
     snack.className = "show";
