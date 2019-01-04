@@ -67,6 +67,7 @@ document.getElementById("btn_add").addEventListener("click", function(){
 });
 
 document.getElementById("btn_control_pause").addEventListener("click", stopTask);
+document.getElementById("btn_control_play").addEventListener("click", playProgress);
 
 //Validate that fields are not empty
 function validateFields(newTask){
@@ -98,39 +99,80 @@ function addToList(newTask){
 
 //Start a task
 function playTask(){
-
     var button = this;
     var divButtons = button.parentElement;
     var divItems = divButtons.parentElement;
     var li = divItems.parentElement;
     var ul = li.parentElement;
     var id = divItems.childNodes[4].value;
-    
+
     var pos = getPositionStored(id);
 
+    //This is the title of the progress task
+    document.getElementById("titleProgressTask").innerText = storedTask[pos].name + " is in progress";
+    
     if(!inProgress){
-
-        document.getElementById("btn_control_pause").style.display = "block";
-        document.getElementById("btn_control_play").style.display = "none";
-
-        inProgress = true;
-        
-        setTimeProgress(timeObjectP);
-        setTimeBreak(timeObjectB);
-
+        playProgress();
         //Remove task from pending list
         storedTask.splice(pos, 1);
         ul.removeChild(li);
     }
 }
 
+function playProgress(){
+    if(!inProgress){
+
+        //This is the play button from the section create task
+        document.getElementById("btn_play").disabled = true;
+        //This are the play button of every pending task
+        var x = document.getElementsByClassName("play_pending_task");
+
+        for(var i = 0; i < x.length; i++){
+            x[i].disabled = true;
+        }
+
+        var btn_pause = document.getElementById("btn_control_pause");
+        btn_pause.style.display = "block";
+
+        var icon_pause = btn_pause.childNodes[1];
+        icon_pause.classList.add("rotate_i");
+        
+        document.getElementById("btn_control_play").style.display = "none";
+
+        //This is the section who contains the red time break
+        document.getElementById("id_section_time_break").style.display = "flex";
+
+        //Update the progress
+        inProgress = true;
+        
+        //Start showing the progress
+        setTimeProgress(timeObjectP);
+        setTimeBreak(timeObjectB);
+    }
+}
+
 //Stop task
 function stopTask(){
+
+    //This is the play button from the section create task
+    document.getElementById("btn_play").disabled = false;
+    //This are the play button of every pending task
+    var x = document.getElementsByClassName("play_pending_task");
+
+    for(var i = 0; i < x.length; i++){
+        x[i].disabled = false;
+    }
+
     inProgress = false;
     clearTimeout(timeP);
     clearTimeout(timeB);
 
-    document.getElementById("btn_control_pause").style.display = "none";
+    var btn_pause = document.getElementById("btn_control_pause");
+    btn_pause.style.display = "none";
+
+    var icon_pause = btn_pause.childNodes[1];
+    icon_pause.classList.remove("rotate_i");
+
     document.getElementById("btn_control_play").style.display = "block";
 }
 
@@ -139,6 +181,11 @@ function setTimeProgress(time){
     var hh = (parseInt(time.h) < 10 ) ? "0" + parseInt(time.h) : time.h;
     var mm = (parseInt(time.m) < 10 ) ? "0" + parseInt(time.m) : time.m;
     var ss = (parseInt(time.s) < 10 ) ? "0" + parseInt(time.s) : time.s;
+
+    //This mean the work time has finished
+    if(parseInt(hh) === 0 && parseInt(mm) === 0 && parseInt(ss) === 0){
+        stopTask;
+    }
 
     document.getElementById("timeProgress").innerHTML = hh + ":" + mm + ":" + ss;
 
@@ -155,6 +202,11 @@ function setTimeBreak(time){
     var hh = (parseInt(time.h) < 10 ) ? "0" + parseInt(time.h) : time.h;
     var mm = (parseInt(time.m) < 10 ) ? "0" + parseInt(time.m) : time.m;
     var ss = (parseInt(time.s) < 10 ) ? "0" + parseInt(time.s) : time.s;
+
+    //It means it is time for the short break
+    if(parseInt(hh) === 0 && parseInt(mm) === 0 && parseInt(ss) === 0){
+        stopTask();
+    }
 
     document.getElementById("timeBreak").innerHTML = hh + ":" + mm + ":" + ss;
 
@@ -285,12 +337,16 @@ function addItemToDOM(newTask){
     divButtons.classList.add("buttons");
 
     var btn_play = document.createElement('button');
+    btn_play.classList.add("play_pending_task");
     var icon_play = document.createElement('i');
     icon_play.classList.add("material-icons");
     icon_play.innerText = "play_arrow";
     btn_play.appendChild(icon_play);
 
     btn_play.addEventListener('click', playTask);
+    if(inProgress){
+        btn_play.setAttribute("disabled", "");
+    }
 
     var btn_remove = document.createElement('button');
     var icon_remove = document.createElement('i');
