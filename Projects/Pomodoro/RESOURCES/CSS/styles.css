@@ -494,7 +494,240 @@ button:disabled{
     background: rgb(194, 21, 21);
 }
 
+/* Styles for curtain */
+.curtain{
+    width: 700px;
+    height: 700px;
+    z-index: 2;
+    background: white;
 
+    border: 5px;
+    border-style: solid;
+    border-radius: 20px;
+
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    
+    animation-name: curtainDown;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: curtainDown;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;*/
+}
+
+.curtain h1{
+    text-align: end;
+    margin: 40px 30px 0 0;
+}
+
+.curtain #cover{
+    width: 600px;
+    height: 350px;
+    background: white;
+    z-index: 4;
+
+    border: 1px;
+    border-style: solid;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+.curtain #cover h1:first-of-type{
+    margin: 10px 0 0 10px;
+}
+
+.curtain #cover h1{
+    margin: 0 0 0 10px;
+}
+
+.curtain #letter{
+    width: 500px;
+    height: 250px;
+
+    border: 1px;
+    border-style: solid;
+
+    position: absolute;
+    top: 350px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0 auto;
+
+    box-shadow: 0px 0px 5px 2px rgb(112, 112, 112);
+
+
+    animation-name: letterOut;
+    animation-delay: 3s;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: letterOut;
+    -webkit-animation-delay: 3s;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.curtain #letter h4{
+    font-size: 50px;
+    text-align: center;
+    margin: 15% 0 5% 0;
+}
+
+.curtain #letter h3{
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 0 20px;
+}
+
+.curtain #circle{
+    background: rgb(219, 77, 77);
+    width: 150px;
+    height: 150px;
+    z-index: 5;
+    border: 5px;
+    border-style: outset;
+    border-radius: 75px;
+    position: absolute;
+    bottom: -70px;
+    left: -1000px;
+    right: 0;
+    margin: 0 auto;
+
+    opacity: 0;
+
+    box-shadow:  4px 2px 56px rgb(112, 112, 112);
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    animation-name: rotateAndMove;
+    animation-delay: 2s;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: rotateAndMove;
+    -webkit-animation-delay: 2s;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.curtain #circle h2:first-of-type{
+    margin: 20% 0 0 0;
+}
+
+.curtain #circle h2{
+    font-size: 30px;
+    font-family: 'Great Vibes', cursive;
+    font-weight: 100;
+    margin: 0 0 0 0;
+    color: white;
+
+    text-shadow: 5px 5px 5px rgba(112, 112, 112, 0.5);
+}
+
+.curtain #circle h2:last-of-type{
+    font-size: 40px;
+}
+
+@keyframes curtainDown{
+    from{
+        top: -700px;
+    }
+    to{
+        top: 100px;
+    }
+}
+
+@-webkit-keyframes curtainDown{
+    from{
+        top: -700px;
+    }
+    to{
+        top: 100px;
+    }
+}
+
+@keyframes rotateAndMove{
+    0%{
+        opacity: 0;
+    }
+    5%{
+        opacity: 1;
+    }
+
+    from{
+        transform: rotate(0deg);
+        left: -1000px;
+    }
+    to{
+        opacity: 1;
+        transform: rotate(359deg);
+        left: 0;
+    }
+}
+
+@-webkit-keyframes rotateAndMove{
+    0%{
+        opacity: 0;
+    }
+    5%{
+        opacity: 1;
+    }
+
+    from{
+        transform: rotate(0deg);
+        left: -1000px;
+    }
+    to{
+        opacity: 1;
+        transform: rotate(359deg);
+        left: 0;
+    }
+}
+
+@keyframes letterOut{
+    from{
+        top: 350px;
+    }
+    to{
+        top: 100px;
+    }
+}
+
+@-webkit-keyframes letterOut{
+    from{
+        top: 350px;
+    }
+    to{
+        top: 100px;
+    }
+}
 
 
 /*Styles for the snackbar*/
