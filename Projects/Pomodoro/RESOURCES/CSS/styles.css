@@ -147,21 +147,29 @@ body{
 /* Section time to break */
 .sectionProgress .section_play_task 
 .section_time_break{
+    width: 70px;
+    height: 70px;
+
     display: none;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
+
+    margin-top: 20px;
+
+    border: 1px;
+    border-style: solid;
+    border-radius: 35px;
 }
 
 .sectionProgress .section_play_task 
 .section_time_break h4{
-    font-size: 22px;
+    font-size: 18px;
     color: red;
 }
 
 .sectionProgress .section_play_task 
 .section_time_break h5{
-    font-size: 14px;
-    text-align: end;
+    font-size: 12px;
     vertical-align: bottom;
 }
 
@@ -495,6 +503,11 @@ button:disabled{
 }
 
 /* Styles for curtain */
+
+#id_curtain{
+    display: none;
+}
+
 .curtain{
     width: 700px;
     height: 700px;

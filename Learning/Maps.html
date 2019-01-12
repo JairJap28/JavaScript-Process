@@ -1,0 +1,28 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script type="text/javascript">
+        var myMap = new Map();
+        myMap.set(1, "Jair");
+        myMap.set(2, "Jap");
+        myMap.set(3, "Developer");
+
+        for(let i = 1; i < 4; i++){
+            document.write(myMap.get(i) + "<br>");
+        }
+
+        document.write("<h2>Map.entries()</h2>");
+
+        for(const[k, v] of myMap.entries()){
+            document.write((k, v) + "<br>");
+        }
+
+    </script>
+</body>
+</html>
