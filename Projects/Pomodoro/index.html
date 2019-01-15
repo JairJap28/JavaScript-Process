@@ -31,7 +31,7 @@
                 <h4 id="timeProgress">00:00:00</h4>
                 <h5>HH:MM:SS</h5>
             </section>
-            
+
             <button class="start_task" id="btn_control_pause">
                 <i class="material-icons">pause</i>
             </button>
@@ -118,23 +118,39 @@
         <ul id="listTask"></ul>
     </section>
 
-    <div id="id_curtain">
-        <h1>January 5</h1>
-        <div id="letter">
-            <h4>Congratulations</h4>
-            <h3>You are doing a really good job</h3>
-        </div>     
-        
-        <div id="cover">
-            <h1>From: Jair Jap</h1>
-            <h1>To: The person who finished the task</h1>
-        </div>
+    <section class="warning" id="id_warning">
+        <section class="box_warning aux_box_warning">
+            <div id="card_string_left"></div>
 
-        <div id="circle">
-            <h2>Didacticos</h2>
-            <h2>csj</h2>
-        </div>
-    </div>
+            <div id="card_ring_left">
+                <div id="line_vertical"></div>
+                <div id="line_horizontal"></div>
+            </div>
+
+            <div class="aux_string_right">
+                <div id="card_string_right"></div>
+                <div id="card_ring_right">
+                    <div id="line_vertical"></div>
+                    <div id="line_horizontal"></div>
+                </div>
+            </div>
+
+            <button class="aux_close_card" id="btn_close_card">
+                <i class="material-icons">close</i>
+            </button>
+
+            <section class="cardSaveCurrentTask aux_card">
+                <h3>Do you want to add the current task to pending list?</h3>
+
+                <section id="card_btns">
+                    <button id="btn_save">Yes, Add</button>
+                    <button id="btn_dont_save">No, I'm done</button>
+                </section>
+            </section>
+        </section>
+    </section>
+
+
 
     <div id="snackbar"></div>
 

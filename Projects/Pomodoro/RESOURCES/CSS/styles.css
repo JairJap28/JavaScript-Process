@@ -46,7 +46,7 @@ body{
 /* Styles for play button */
 .sectionProgress .section_play_task
  .start_task{
-    display: none;;
+    display: none;
     width: 110px;
     height: 110px;
     background: transparent;
@@ -89,9 +89,129 @@ body{
 }
 
 .sectionProgress .section_play_task
+.stop_task:disabled{
+    opacity: 0.5;
+}
+
+.sectionProgress .section_play_task
+.auxStopTask{
+    position: relative;
+
+    pointer-events: none;
+
+    animation-name: moveStopTask;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: moveStopTask;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes moveStopTask{
+    0%{
+        left: 0px;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        margin: 20px 0 0 40px;
+
+        border-width: 1px;
+    }
+    20%{
+        left: 0;
+        top: -40px;
+    }
+    90%{
+        top: -40px;
+
+        width: 30px;
+        height: 30px;
+
+        border-width: 1px;
+    }
+    100%{
+        left: 125px;
+        top: 0;
+
+        width: 70px;
+        height: 70px;
+
+        margin: 20px 0 0 40px;
+    }
+}
+
+@-webkit-keyframes moveStopTask{
+    0%{
+        left: 0px;
+        width: 30px;
+        height: 30px;
+        margin: 20px 0 0 40px;
+    }
+    10%{
+        left: 0;
+        top: -40px;
+    }
+    90%{
+        top: -40px;
+
+        width: 30px;
+        height: 30px;
+    }
+    100%{
+        left: 125px;
+        top: 0;
+
+        width: 70px;
+        height: 70px;
+
+        margin: 20px 0 0 40px;
+    }
+}
+
+.sectionProgress .section_play_task
 .stop_task .material-icons{
     font-size: 80px;
     color: rgb(0, 170, 23);
+}
+
+.sectionProgress .section_play_task
+.auxStopTask .material-icons{
+    animation-name: letterMoveStopTask;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: letterMoveStopTask;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes letterMoveStopTask{
+    0%{
+        font-size: 10px;
+    }
+    90%{
+        font-size: 10px;
+    }
+    100%{
+        font-size: 40px;
+    }
+}
+
+@-webkit-keyframes letterMoveStopTask{
+    0%{
+        font-size: 10px;
+    }
+    90%{
+        font-size: 20px;
+    }
+    100%{
+        font-size: 40px;
+    }
 }
 
 .sectionProgress .section_play_task
@@ -108,6 +228,7 @@ body{
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
  }
+
 
 /* animation to rotate the icon */
 @keyframes rotate{
@@ -142,8 +263,6 @@ body{
 }
 
 
-
-
 /* Section time to break */
 .sectionProgress .section_play_task 
 .section_time_break{
@@ -156,9 +275,62 @@ body{
 
     margin-top: 20px;
 
-    border: 1px;
+    border: 2px;
     border-style: solid;
     border-radius: 35px;
+    border-color: rgba(0, 0, 0, 0.658);
+}
+
+.sectionProgress .section_play_task 
+.auxTimeBreak{
+    position: relative;
+
+    animation-name: moveBreakTime;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: moveBreakTime;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes moveBreakTime{
+    0%{
+        left: 0px;
+        width: 60px;
+        height: 60px;
+
+        margin: 20px 0 0 0;
+    }
+    30%{
+        width: 60px;
+        height: 60px;
+        margin: 20px 0 0 0;
+    }
+    100%{
+        left: -80px;
+        width: 110px;
+        height: 110px;
+
+        border-radius: 55px;
+        margin: 0 0 0 0;
+    }
+}
+
+@-webkit-keyframes moveBreakTime{
+    0%{
+        left: 0px;
+    }
+    100%{
+        left: -80px;
+        width: 110px;
+        height: 110px;
+
+        border-radius: 55px;
+        margin: 0 0 0 20px;
+    }
 }
 
 .sectionProgress .section_play_task 
@@ -168,10 +340,80 @@ body{
 }
 
 .sectionProgress .section_play_task 
+.auxTimeBreak h4{
+    animation-name: letterBreakTimeH4;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: letterBreakTimeH4;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes letterBreakTimeH4{
+    0%{
+        font-size: 15px;
+    }
+    30%{
+        font-size: 18px;
+    }
+    100%{
+        font-size: 22px;
+    }
+}
+
+@-webkit-keyframes letterBreakTimeH4{
+    0%{
+        font-size: 18px;
+    }
+    30%{
+        font-size: 18px;
+    }
+    100%{
+        font-size: 22px;
+    }
+}
+
+.sectionProgress .section_play_task 
 .section_time_break h5{
     font-size: 12px;
     vertical-align: bottom;
 }
+
+.sectionProgress .section_play_task
+.auxTimeBreak h5{
+    animation-name: letterBreakTimeH5;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: letterBreakTimeH5;
+    -webkit-animation-duration: 2s; 
+    -webkit-animation-timing-function: linear; 
+    -webkit-animation-fill-mode: forwards;
+} 
+
+
+@keyframes letterBreakTimeH5{
+    0%{
+        font-size: 12px;
+    }
+    100%{
+        font-size: 18px;
+    }
+}
+
+@-webkit-keyframes letterBreakTimeH5{
+    0%{
+        font-size: 12px;
+    }
+    100%{
+        font-size: 18px;
+    }
+}
+
 
 .sectionCreateTask{
     width: 100%;
@@ -502,246 +744,395 @@ button:disabled{
     background: rgb(194, 21, 21);
 }
 
-/* Styles for curtain */
 
-#id_curtain{
+/* Styles for the card, to ask the user */
+/* what he/she wants to do with the current task*/
+.warning{
     display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255, 0.7);
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    z-index: 99;
 }
 
-.curtain{
-    width: 700px;
-    height: 700px;
-    z-index: 2;
-    background: white;
+.box_warning{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
 
-    border: 5px;
-    border-style: solid;
-    border-radius: 20px;
+.cardSaveCurrentTask{
+    width: 400px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2);
+    background: white;
+    text-align: center;
 
     position: absolute;
     top: 100px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    
-    animation-name: curtainDown;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-
-    -webkit-animation-name: curtainDown;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-fill-mode: forwards;*/
-}
-
-.curtain h1{
-    text-align: end;
-    margin: 40px 30px 0 0;
-}
-
-.curtain #cover{
-    width: 600px;
-    height: 350px;
-    background: white;
-    z-index: 4;
-
-    border: 1px;
-    border-style: solid;
-    border-right: none;
-    border-bottom: none;
-    border-left: none;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0 auto;
-}
-
-.curtain #cover h1:first-of-type{
-    margin: 10px 0 0 10px;
-}
-
-.curtain #cover h1{
-    margin: 0 0 0 10px;
-}
-
-.curtain #letter{
-    width: 500px;
-    height: 250px;
-
-    border: 1px;
-    border-style: solid;
-
-    position: absolute;
-    top: 350px;
     right: 0;
     left: 0;
-    bottom: 0;
     margin: 0 auto;
 
-    box-shadow: 0px 0px 5px 2px rgb(112, 112, 112);
-
-
-    animation-name: letterOut;
-    animation-delay: 3s;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-
-    -webkit-animation-name: letterOut;
-    -webkit-animation-delay: 3s;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-fill-mode: forwards;
+    z-index: 100;
 }
 
-.curtain #letter h4{
-    font-size: 50px;
-    text-align: center;
-    margin: 15% 0 5% 0;
-}
-
-.curtain #letter h3{
-    font-size: 20px;
-    text-align: center;
-    margin: 0 0 0 20px;
-}
-
-.curtain #circle{
-    background: rgb(219, 77, 77);
-    width: 150px;
-    height: 150px;
-    z-index: 5;
-    border: 5px;
-    border-style: outset;
-    border-radius: 75px;
-    position: absolute;
-    bottom: -70px;
-    left: -1000px;
-    right: 0;
-    margin: 0 auto;
-
-    opacity: 0;
-
-    box-shadow:  4px 2px 56px rgb(112, 112, 112);
-
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    animation-name: rotateAndMove;
-    animation-delay: 2s;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-
-    -webkit-animation-name: rotateAndMove;
-    -webkit-animation-delay: 2s;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-fill-mode: forwards;
-
-}
-
-.curtain #circle h2:first-of-type{
-    margin: 20% 0 0 0;
-}
-
-.curtain #circle h2{
-    font-size: 30px;
-    font-family: 'Great Vibes', cursive;
-    font-weight: 100;
-    margin: 0 0 0 0;
+.box_warning .material-icons{
+    font-size: 8px;
     color: white;
-
-    text-shadow: 5px 5px 5px rgba(112, 112, 112, 0.5);
 }
 
-.curtain #circle h2:last-of-type{
-    font-size: 40px;
+.box_warning #btn_close_card{
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 90px;
+    left: 400px;
+    right: 0;
+    margin: 0 auto;
+
+    background: red;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: white;
+    border-style: solid;
+
+    text-align: center;
+
+    z-index: 101;
 }
 
-@keyframes curtainDown{
+.box_warning #btn_close_card:hover{
+    background: rgb(158, 2, 2);
+}
+
+.cardSaveCurrentTask h3{
+    margin: 0 0 20px 0;
+}
+
+.cardSaveCurrentTask 
+#card_btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.cardSaveCurrentTask 
+#card_btns button{
+    width: 45%;
+}
+
+.cardSaveCurrentTask 
+#card_btns button:first-of-type{
+    margin: 0 5% 0 0;
+}
+
+.cardSaveCurrentTask 
+#card_btns button:last-of-type{
+    margin: 0 0 0 5%;
+}
+
+#card_string_left{
+    width: 5px;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2);
+    background: white;
+
+    position: absolute;
+    top: 0;
+    left: 270px;
+    right: 0;
+    margin: 0 auto;
+
+    z-index: 100;
+}
+
+#card_string_right{
+    width: 5px;
+    height: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2);
+    background: white;
+
+    position: absolute;
+    top: -145px;
+    left: -270px;
+    right: 0;
+    margin: 0 auto;
+
+    z-index: 100;
+}
+
+#card_ring_left{
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 1px 8px 1px rgba(0,0,0, 0.2);
+    background: white;
+
+    border-radius: 4px;
+
+    position: absolute;
+    top: 105px;
+    left: 270px;
+    right: 0;
+    margin: 0 auto;
+
+    z-index: 101;
+}
+
+#card_ring_left #line_vertical{
+    width: 1px;
+    height: 5px;
+    background: white;
+    border-width: 0.5px;
+    border-style: inset;
+    border-color: rgba(0, 0, 0, 0.16);
+
+    margin: 1.5px 3.5px 1.5px 3.5px;
+
+}
+
+#card_ring_left #line_horizontal{
+    width: 5px;
+    height: 1px;
+    background: white;
+    border-width: 0.5px;
+    border-style: inset;
+    border-color: rgba(0, 0, 0, 0.16);
+
+    position: absolute;
+    top: 0;
+
+    margin: 3.5px 1.5px 3.5px 1.5px;
+}
+
+#card_ring_right{
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 1px 8px 1px rgba(0,0,0, 0.2);
+    background: white;
+
+    border-radius: 4px;
+
+    position: absolute;
+    top: 105px;
+    left: -270px;
+    right: 0;
+    margin: 0 auto;
+
+    z-index: 101;
+}
+
+#card_ring_right #line_vertical{
+    width: 1px;
+    height: 5px;
+    background: white;
+    border-width: 0.5px;
+    border-style: inset;
+    border-color: rgba(0, 0, 0, 0.16);
+
+    margin: 1.5px 3.5px 1.5px 3.5px;
+
+}
+
+#card_ring_right #line_horizontal{
+    width: 5px;
+    height: 1px;
+    background: white;
+    border-width: 0.5px;
+    border-style: inset;
+    border-color: rgba(0, 0, 0, 0.16);
+
+    position: absolute;
+    top: 0;
+
+    margin: 3.5px 1.5px 3.5px 1.5px;
+}
+
+.aux_box_warning{
+    animation-name: goDown;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0, .46, .84, .18);
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: goDown;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: cubic-bezier(0, .46, .84, .18);
+    -webkit-animation-fill-mode: forwards;
+}
+
+.aux_card{
+    animation-name: rotateCard;
+    animation-duration: 1s;
+    animation-delay: 2.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: rotateCard;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-delay: 2.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.aux_close_card{
+    animation-name: rotateCloseCard;
+    animation-duration: 1s;
+    animation-delay: 2.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-name: rotateCloseCard;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-delay: 2.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.aux_string_right{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    animation-name: goDownString;
+    animation-duration: 0.8s;
+    animation-delay: 2.65s;
+    animation-timing-function: ease-in;
+
+    -webkit-animation-name: goDownString;
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-delay: 2.65s;
+    -webkit-animation-timing-function: ease-in;
+}
+
+@keyframes goDown{
     from{
-        top: -700px;
+        top: -350px;
     }
     to{
-        top: 100px;
+        top: 0px;
     }
 }
 
-@-webkit-keyframes curtainDown{
+
+@-webkit-keyframes goDown{
     from{
-        top: -700px;
+        top: -350px;
     }
     to{
-        top: 100px;
+        top: 0px;
     }
 }
 
-@keyframes rotateAndMove{
+@-webkit-keyframes rotateCard{
     0%{
-        opacity: 0;
-    }
-    5%{
-        opacity: 1;
-    }
-
-    from{
         transform: rotate(0deg);
-        left: -1000px;
+        transform-origin: top right;
+        top: 100px;
     }
-    to{
-        opacity: 1;
-        transform: rotate(359deg);
-        left: 0;
+    30%{
+        transform: rotate(-20deg);
+        transform-origin: top right;
+        top: 92px;
+    }
+    60%{
+        transform: rotate(-20deg);
+        transform-origin: top right;
+        top: 92px;
+    }
+    100%{
+        transform: rotate(0deg);
+        transform-origin: top right;
+        top: 100px;
     }
 }
 
-@-webkit-keyframes rotateAndMove{
+@keyframes rotateCard{
     0%{
-        opacity: 0;
-    }
-    5%{
-        opacity: 1;
-    }
-
-    from{
         transform: rotate(0deg);
-        left: -1000px;
+        transform-origin: top right;
+        top: 100px;
     }
-    to{
-        opacity: 1;
-        transform: rotate(359deg);
-        left: 0;
+    30%{
+        transform: rotate(-20deg);
+        transform-origin: top right;
+        top: 92px;
     }
-}
-
-@keyframes letterOut{
-    from{
-        top: 350px;
+    60%{
+        transform: rotate(-20deg);
+        transform-origin: top right;
+        top: 92px;
     }
-    to{
+    100%{
+        transform: rotate(0deg);
+        transform-origin: top right;
         top: 100px;
     }
 }
 
-@-webkit-keyframes letterOut{
-    from{
-        top: 350px;
+@keyframes rotateCloseCard{
+    0%{
+        transform: rotate(0deg);
     }
-    to{
-        top: 100px;
+    30%{
+        transform: rotate(-20deg);
+    }
+    60%{
+        transform: rotate(-20deg);
+    }
+    100%{
+        transform: rotate(0deg);
     }
 }
 
+@-webkit-keyframes rotateCloseCard{
+    0%{
+        transform: rotate(0deg);
+    }
+    30%{
+        transform: rotate(-20deg);
+    }
+    60%{
+        transform: rotate(-20deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes goDownString{
+    0%{
+        top: 0;
+    }
+    50%{
+        top: 110px;
+    }
+    100%{
+        top: 0px;
+    }
+}
+
+@keyframes goDownString{
+    0%{
+        top: 0;
+    }
+    50%{
+        top: 110px;
+    }
+    100%{
+        top: 0px;
+    }
+}
 
 /*Styles for the snackbar*/
 /* The snackbar - position it at the bottom and in the middle of the screen */
