@@ -124,12 +124,15 @@ class Play {
 
     //Start a task
     static playTask() {
+        debugger;
         var button = this;
         var divButtons = button.parentElement;
-        var divItems = divButtons.parentElement;
+        var container = divButtons.parentElement;
+        var divItems = container.parentElement;
         var li = divItems.parentElement;
         var ul = li.parentElement;
-        var id = divItems.childNodes[4].value;
+        var id = divItems.childNodes[2].value;
+
 
         var pos = getPositionStored(id);
 
@@ -381,12 +384,12 @@ class ListBinding {
         var divItems = document.createElement('div');
         divItems.classList.add('items');
 
+
         var divItemTask = document.createElement('div');
         divItemTask.classList.add('itemTask');
 
         var task = document.createElement('h4');
         task.innerText = "Task";
-
 
 
         var nameTask = document.createElement('h3');
@@ -409,6 +412,16 @@ class ListBinding {
         //Adding the elements to the div
         divDesc.appendChild(descriptionTitle);
         divDesc.appendChild(description);
+
+        var containerUp = document.createElement("div");
+        containerUp.classList.add("container-up");
+
+        containerUp.appendChild(divItemTask);
+        containerUp.appendChild(divDesc);
+
+        //Div for buttons and rating
+        var container = document.createElement('div');
+        container.classList.add("container");
 
         //Div for the rating bar
         var divRating = document.createElement('div');
@@ -457,6 +470,9 @@ class ListBinding {
         divButtons.appendChild(btn_play);
         divButtons.appendChild(btn_remove);
 
+        container.appendChild(divRating);
+        container.appendChild(divButtons);
+
         //Hiden input to store the id
         var hiddenIn = document.createElement('input');
         hiddenIn.setAttribute("id", "hiddenInput");
@@ -464,10 +480,8 @@ class ListBinding {
         hiddenIn.setAttribute("value", newTask.id);
 
         //add all the div to the global div
-        divItems.appendChild(divItemTask);
-        divItems.appendChild(divDesc);
-        divItems.appendChild(divRating);
-        divItems.appendChild(divButtons);
+        divItems.appendChild(containerUp);
+        divItems.appendChild(container);
 
         //add the hidden element
         divItems.appendChild(hiddenIn);
@@ -489,13 +503,14 @@ class ListBinding {
 
     //Remove an item from the pending task
     static removeItem() {
-        var items = this.parentElement.parentNode;
+        debugger;
+        var items = this.parentElement.parentNode.parentElement;
         var li = items.parentElement;
         var lu = li.parentElement;
 
         //get the input, it is placed 
         //in the 4 position
-        var hiddenInput = items.childNodes[4];
+        var hiddenInput = items.childNodes[2];
         var pos = getPositionStored(hiddenInput.value);
 
         if (pos !== -1) {
@@ -549,14 +564,25 @@ document.getElementById("btn_add").addEventListener("click", function () {
         ListBinding.addItemToDOM(task);
         //Clear fields
         ListBinding.clearFieldsCreate();
+
+    
+        if(document.querySelector(".add-hidden").style.backgroundColor !== "transparent"){
+            document.querySelector(".aux-create").style.display = "none";
+        }
     }
     else {
         showSnackbar(validate.field);
-    }
+    }   
+});
+
+document.querySelector(".add-hidden").addEventListener("click", function(){
+    document.querySelector(".aux-create").style.display = "block";
 });
 
 document.getElementById("btn_play").addEventListener("click", function () {
-      Play.playFromCreate(Play.getTask());
+    Play.playFromCreate(Play.getTask());
+    document.querySelector(".sectionCreateTask").style.display = "none";
+    document.querySelector(".aux-create").style.display = "none";
 });
 
 document.getElementById("btn_control_pause").addEventListener("click", Play.stopTask);

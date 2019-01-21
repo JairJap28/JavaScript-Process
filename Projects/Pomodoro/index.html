@@ -10,6 +10,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="RESOURCES/CSS/reset.css">
     <link rel="stylesheet" type="text/css" href="RESOURCES/CSS/styles.css">
+    <link rel="stylesheet" type="text/css" href="RESOURCES/CSS/mobile.css">
 
     <!-- Add icon library -->
     <!-- This for rating bar -->
@@ -49,74 +50,82 @@
         <h6>Achieved task: 0</h6>
     </section>
 
-    <section class="sectionCreateTask">
-
-        <section class="up">
-            <section id="inTask">
-                <h4>Task</h4>
-                <input type="text" placeholder="Task...." id="input_task">
-            </section>
-
-            <section id="inDescription">
-                <h4>Description</h4>
-                <section id="inputField">
-                    <input type="text" placeholder="Write a short description" id="input_description">
-                    <h6 id="cant_characters">26/100</h6>
+    <section class="aux-create">
+        <section class="sectionCreateTask">
+            <section class="up">
+                <section id="inTask">
+                    <h4>Task</h4>
+                    <input type="text" placeholder="Task...." id="input_task">
+                </section>
+    
+                <section id="inDescription">
+                    <h4>Description</h4>
+                    <section id="inputField">
+                        <textarea type="text" placeholder="Write a short description" id="input_description"></textarea>
+    
+                        <h6 id="cant_characters">26/100</h6>
+                    </section>
                 </section>
             </section>
-        </section>
-
-        <section class="down">
-
-            <section class="sectionTime">
-                <section>
-                    <h5>Work time:</h5>
-                    <input type="number" min="5" max="180" step="1" value="25" id="input_work_time">
+    
+            <section class="down">
+    
+                <section class="sectionTime">
+                    <section>
+                        <h5>Work time:</h5>
+                        <input type="number" min="5" max="180" step="1" value="25" id="input_work_time">
+                    </section>
+    
+                    <section>
+                        <h5>Short Break:</h5>
+                        <input type="number" min="5" max="60" step="1" value="5" id="input_short_break">
+                    </section>
+    
+                    <section>
+                        <h5>Long Break:</h5>
+                        <input type="number" min="5" max="60" step="1" value="15" id="input_long_break">
+                    </section>
                 </section>
-
-                <section>
-                    <h5>Short Break:</h5>
-                    <input type="number" min="5" max="60" step="1" value="5" id="input_short_break">
-                </section>
-
-                <section>
-                    <h5>Long Break:</h5>
-                    <input type="number" min="5" max="60" step="1" value="15" id="input_long_break">
-                </section>
-            </section>
-
-            <section class="buttons">
-                <div class="containerRating">
-                    <div class="ratingBar">
-                        <i class="material-icons start" id="star1">start</i>
-                        <i class="material-icons start" id="star2">start</i>
-                        <i class="material-icons start" id="star3">start</i>
-                        <i class="material-icons start" id="star4">start</i>
-                        <i class="material-icons start" id="star5">start</i>
+    
+                <section class="buttons">
+                    <div class="containerRating">
+                        <div class="ratingBar">
+                            <i class="material-icons start" id="star1">start</i>
+                            <i class="material-icons start" id="star2">start</i>
+                            <i class="material-icons start" id="star3">start</i>
+                            <i class="material-icons start" id="star4">start</i>
+                            <i class="material-icons start" id="star5">start</i>
+                        </div>
+                        <h4>Priority</h4>
                     </div>
-                    <h4>Priority</h4>
-                </div>
-
-                <div class="containerButtons">
-                    <div>
-                        <button class="material-icons" id="btn_add">add</button>
-                        <h4>Add</h4>
+    
+                    <div class="containerButtons">
+                        <div>
+                            <button class="material-icons" id="btn_add">add</button>
+                            <h4>Add</h4>
+                        </div>
+                        <div>
+                            <button class="material-icons" id="btn_play">play_arrow</button>
+                            <h4>Play</h4>
+                        </div>
                     </div>
-                    <div>
-                        <button class="material-icons" id="btn_play">play_arrow</button>
-                        <h4>Play</h4>
-                    </div>
-                </div>
+                </section>
+    
+    
             </section>
-
-
         </section>
     </section>
+
+    
 
     <section class="sectionPendingTask">
         <h2>Pending Task</h2>
         <ul id="listTask"></ul>
     </section>
+
+    <button class="add-hidden">
+        <i class="material-icons">add</i>
+    </button>
 
     <section class="warning" id="id_warning">
         <section class="box_warning aux_box_warning">

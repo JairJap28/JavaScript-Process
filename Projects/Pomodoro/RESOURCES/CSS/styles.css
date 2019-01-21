@@ -414,10 +414,9 @@ body{
     }
 }
 
-
 .sectionCreateTask{
     width: 100%;
-    height: 160px;
+    height: 180px;
     border-radius: 10px;
     padding: 15px;
     background: rgb(243, 95, 95);
@@ -427,14 +426,16 @@ body{
 
 .sectionCreateTask .up{    
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns:  1fr 2fr;
+    grid-column-gap: 1rem;
     margin: 0 0 2% 0;
 }
 
 .sectionCreateTask #inTask,
 .sectionCreateTask #inDescription{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-areas: 'name input';
+    grid-template-columns: 1fr 4fr;
 }
 
 .sectionCreateTask h4{
@@ -444,7 +445,8 @@ body{
     margin: 0 15px 0 0;
 }
 
-.sectionCreateTask input{
+.sectionCreateTask input,
+.sectionCreateTask textarea{
     border: none;
     border-radius: 5px;
     background: rgba(235,235,235,0.3);
@@ -453,19 +455,19 @@ body{
     font-size: 14px;
 }
 
-.sectionCreateTask input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.sectionCreateTask ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: rgba(255,255,255, 0.46);
     font-size: 12px;
   }
-.sectionCreateTask input ::-moz-placeholder { /* Firefox 19+ */
+.sectionCreateTask ::-moz-placeholder { /* Firefox 19+ */
     color: rgba(255,255,255, 0.46);
     font-size: 12px;
   }
-.sectionCreateTask input :-ms-input-placeholder { /* IE 10+ */
+.sectionCreateTask :-ms-input-placeholder { /* IE 10+ */
     color: rgba(255,255,255, 0.46);
     font-size: 12px;
   }
-.sectionCreateTask input :-moz-placeholder { /* Firefox 18- */
+.sectionCreateTask :-moz-placeholder { /* Firefox 18- */
     color: rgba(255,255,255, 0.46);
     font-size: 12px;
   }
@@ -474,14 +476,8 @@ body{
     height: 32px;
 }
 
-.sectionCreateTask #inDescription{
-    display: grid;
-    grid-template-columns: 100px auto;
-}
-
-.sectionCreateTask #inDescription section input{
+.sectionCreateTask #inDescription section textarea{
     width: 100%;
-    height: 32px;
 }
 
 .sectionCreateTask #inDescription section h6{
@@ -491,16 +487,18 @@ body{
 }
 
 .sectionCreateTask .down{
-    width: 70%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: absolute;
+    width: 100%;
+    display: grid;
+    grid-template-areas: "time buttons";
+    grid-template-columns: 2fr 2fr;
+    position: relative;
 }
 
 .sectionCreateTask .down .sectionTime{
-    width: 40%;
-    display: flex;
+    grid-area: time;
+    display: grid;
+    grid-template-areas: "work short long";
+    grid-template-columns: repeat(3, 1fr);
     margin: 0;
 }
 
@@ -514,7 +512,7 @@ body{
 
 .sectionCreateTask .down .sectionTime::before{
     content: '';
-    width: 40%;
+    width: 50%;
     height: 1px;
     background: white;
     position: absolute;
@@ -523,7 +521,7 @@ body{
 
 .sectionCreateTask .down .sectionTime::after{
     content: '';
-    width: 40%;
+    width: 50%;
     height: 1px;
     background: white;
     position: absolute;
@@ -553,15 +551,26 @@ body{
 }
 
 .sectionCreateTask .down .buttons{
-    width: 30%;
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    float: right;
+    grid-area: buttons;
+    display: grid;
+    grid-template-areas: "bar buttons";
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .sectionCreateTask .down .buttons button:disabled{
     opacity: 0.5;
+}
+
+.sectionCreateTask .down
+.buttons .containerRating{
+    grid-area: bar;
+    justify-self: center;
+}
+
+.sectionCreateTask .down
+.buttons .containerButtons{
+    grid-area: buttons;
+    justify-self: center;
 }
 
 .sectionCreateTask .down .buttons
@@ -673,7 +682,7 @@ button:disabled{
 .sectionPendingTask .items{
     min-height: 45px;
     display: grid;
-    grid-template-columns: 170px auto 85px 85px;
+    grid-template-columns: 1fr 2fr 1fr;
     border: 1px;
     border-style: solid;
     border-color: rgb(112, 112, 112);
@@ -742,6 +751,10 @@ button:disabled{
 
 .sectionPendingTask .items button:last-of-type{
     background: rgb(194, 21, 21);
+}
+
+.add-hidden{
+    display: none;
 }
 
 
