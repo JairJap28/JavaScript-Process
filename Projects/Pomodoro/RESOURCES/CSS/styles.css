@@ -682,13 +682,14 @@ button:disabled{
 .sectionPendingTask .items{
     min-height: 45px;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 2fr 1fr;
     border: 1px;
     border-style: solid;
     border-color: rgb(112, 112, 112);
     border-radius: 5px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     margin: 0 0 6px 0;
+    padding: 10px
 }
 
 .sectionPendingTask .items::after{
@@ -696,11 +697,36 @@ button:disabled{
     transition: all 400ms;
 }
 
-.sectionPendingTask .items div{
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
+.sectionPendingTask .container-Up{
+    display: grid;
+    grid-template-areas: "task description";
+    grid-template-columns: 1fr 2fr;
 }
+
+.sectionPendingTask .container-Up
+div{
+    display: grid;
+    grid-template-areas: "name input";
+    grid-template-columns: 1fr 2fr;
+    align-self: center;
+}
+
+.sectionPendingTask .container{
+    display: grid;
+    grid-template-areas: "bar buttons";
+    grid-template-columns: 2fr 1fr;
+}
+
+.sectionPendingTask .container
+div{
+    align-self: center;
+}
+
+.sectionPendingTask .container
+.buttons{
+    justify-self: center;
+}
+
 
 .sectionPendingTask .items 
 #itemDescription{
@@ -757,6 +783,9 @@ button:disabled{
     display: none;
 }
 
+.close-hidden{
+    display: none;
+}
 
 /* Styles for the card, to ask the user */
 /* what he/she wants to do with the current task*/

@@ -4,9 +4,6 @@
 */
 
 @media (min-width: 1281px) {
-  .aux-create{
-    display: block;
-  }
 } 
 
 /* 
@@ -19,9 +16,6 @@
     width: 80%;
   }
 
-  .aux-create{
-    display: block;
-  }
 }
 
 /* 
@@ -37,11 +31,6 @@
   .sectionProgress h3{
     font-size: 45px;
   }
-
-  .aux-create{
-    display: block;
-  }
-  
 }
 
 /* 
@@ -50,9 +39,7 @@
 */
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .aux-create{
-    display: block;
-  }
+  
 }
 
 /* 
@@ -77,8 +64,73 @@
     display: none;
   }
 
+  .sectionProgress .aux-play{
+    display: grid;
+    grid-template-areas: "time button break";
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sectionProgress .section_play_task
+  section:nth-of-type(1){
+    align-self: center;
+  }
+
+
+  .sectionProgress .section_play_task
+  section:nth-of-type(1) h4{
+    font-size: 20px;
+  }
+
+  .sectionProgress .section_play_task
+  section:nth-of-type(1) h5{
+    font-size: 10px;
+  }
+
+  .sectionProgress .section_play_task
+  .start_task{
+    width: 80px;
+    height: 80px;
+    margin: 0 10px 0 10px;
+  }
+
+  /* Section time to break */
+  .sectionProgress .section_play_task 
+  .section_time_break{
+    justify-self: center;
+    width: 50px;
+    height: 50px;
+  }
+
+  .sectionProgress .section_play_task 
+  .section_time_break h4{
+      font-size: 12px;
+      color: red;
+  }
+
+  .sectionProgress .section_play_task 
+  .section_time_break h5{
+      font-size: 10px;
+      vertical-align: bottom;
+  }
+
+  /* Styles for stop button */
+  .sectionProgress .section_play_task
+  .stop_task{
+    width: 80px;
+    height: 80px;
+    margin: 0 10px 0 10px;
+  }
+
+  .sectionProgress .section_play_task
+  .stop_task .material-icons{
+      font-size: 40px;
+  }
+
   .aux-create{
     display: none;
+  }
+
+  .aux-selector{
     width: 100%;
     height: 100vh;
     background: rgba(190, 190, 190, 0.3);
@@ -155,15 +207,15 @@
     color: rgba(109, 109, 109, 0.795);
     font-size: 12px;
   }
-.sectionCreateTask input ::-moz-placeholder { /* Firefox 19+ */
+  .sectionCreateTask input ::-moz-placeholder { /* Firefox 19+ */
     color: rgba(109, 109, 109, 0.795);
     font-size: 12px;
   }
-.sectionCreateTask input :-ms-input-placeholder { /* IE 10+ */
+  .sectionCreateTask input :-ms-input-placeholder { /* IE 10+ */
     color: rgba(109, 109, 109, 0.795);
     font-size: 12px;
   }
-.sectionCreateTask input :-moz-placeholder { /* Firefox 18- */
+  .sectionCreateTask input :-moz-placeholder { /* Firefox 18- */
     color: rgba(109, 109, 109, 0.795);
     font-size: 12px;
   }
@@ -248,6 +300,7 @@
     "container-up"
     "container";
     grid-template-columns: 1fr;
+    grid-row-gap: 1rem;
 
   }
   
@@ -267,7 +320,7 @@
 
   .sectionPendingTask .items
   .container .ratingBar i{
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0 0.2rem 0 0.2rem;
   }
 
@@ -278,7 +331,8 @@
   }
   
   /* BTN ADD HIDDEN */
-  .add-hidden{
+  .add-hidden, 
+  .close-hidden{
     display: block;
     width: 35px;
     height: 35px;
@@ -296,11 +350,13 @@
     z-index: 4;
   }
 
-  .add-hidden:hover{
+  .add-hidden:hover,
+  .close-hidden:hover{
     background: rgb(255, 60, 60);
   }
 
-  .add-hidden i{
+  .add-hidden i,
+  .close-hidden i{
     color: white;
   }
 

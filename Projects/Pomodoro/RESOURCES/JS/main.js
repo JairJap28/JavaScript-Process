@@ -108,9 +108,18 @@ class Play {
     }
 
     static playFromCreate(task) {
+        debugger;
         if(!inProgress){
             var task = Play.playSettings();
-    
+            
+            //This is the title of the progress task
+            document.getElementById("titleProgressTask").innerText = task.name + " is in progress";
+            Play.playProgress();
+        }
+        else if(Play.getInPause()){
+            document.getElementById("id_warning").style.display = "block";
+            var task = Play.playSettings();
+            
             //This is the title of the progress task
             document.getElementById("titleProgressTask").innerText = task.name + " is in progress";
             Play.playProgress();
@@ -124,7 +133,6 @@ class Play {
 
     //Start a task
     static playTask() {
-        debugger;
         var button = this;
         var divButtons = button.parentElement;
         var container = divButtons.parentElement;
@@ -566,8 +574,8 @@ document.getElementById("btn_add").addEventListener("click", function () {
         ListBinding.clearFieldsCreate();
 
     
-        if(document.querySelector(".add-hidden").style.backgroundColor !== "transparent"){
-            document.querySelector(".aux-create").style.display = "none";
+        if(document.body.clientWidth <= 767){
+            hideCreate();
         }
     }
     else {
@@ -575,14 +583,15 @@ document.getElementById("btn_add").addEventListener("click", function () {
     }   
 });
 
-document.querySelector(".add-hidden").addEventListener("click", function(){
-    document.querySelector(".aux-create").style.display = "block";
-});
+document.querySelector(".add-hidden").addEventListener("click", showCreate);
 
 document.getElementById("btn_play").addEventListener("click", function () {
+    Play.playSettings();
     Play.playFromCreate(Play.getTask());
-    document.querySelector(".sectionCreateTask").style.display = "none";
-    document.querySelector(".aux-create").style.display = "none";
+
+    if(document.body.clientWidth <= 767){
+        hideCreate();
+    }
 });
 
 document.getElementById("btn_control_pause").addEventListener("click", Play.stopTask);
@@ -676,4 +685,34 @@ function showSnackbar(field) {
     setTimeout(function () {
         snack.className = snack.className.replace("show", "");
     }, 3000);
+}
+
+function hideCreate(){
+    if(document.body.clientWidth <= 767){
+        document.getElementsByClassName("aux-selector")[0].classList.add("aux-create");
+    }
+
+    var btn = document.getElementsByClassName("close-hidden")[0];
+    var i = btn.childNodes[1];
+    i.innerText = "add";
+
+    document.querySelector(".close-hidden").removeEventListener("click", hideCreate);
+    btn.classList.replace("close-hidden", "add-hidden");
+
+    document.querySelector(".add-hidden").addEventListener("click", showCreate);
+}
+
+function showCreate(){
+    if(document.body.clientWidth <= 767){
+        document.getElementsByClassName("aux-selector")[0].classList.remove("aux-create");
+    }
+
+    var btn = document.getElementsByClassName("add-hidden")[0];
+    var i = btn.childNodes[1];
+    i.innerText = "close";
+
+    document.querySelector(".add-hidden").removeEventListener("click", showCreate);
+    btn.classList.replace("add-hidden", "close-hidden");
+
+    document.querySelector(".close-hidden").addEventListener("click", hideCreate);
 }
